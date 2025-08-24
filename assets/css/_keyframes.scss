@@ -1,0 +1,137 @@
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes shake-anim {
+    0% {
+        transform: rotate(0) scale(1) skew(1deg);
+    }
+
+    10%,
+    30% {
+        -moz-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+
+    20%,
+    40% {
+        -moz-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+
+    100%,
+    50% {
+        -moz-transform: rotate(0) scale(1) skew(1deg);
+    }
+}
+
+@-moz-keyframes shake-anim {
+    0% {
+        transform: rotate(0) scale(1) skew(1deg);
+    }
+
+    10%,
+    30% {
+        -moz-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+
+    20%,
+    40% {
+        -moz-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+
+    100%,
+    50% {
+        -moz-transform: rotate(0) scale(1) skew(1deg);
+    }
+}
+
+@-webkit-keyframes shake-anim {
+    0%,
+    100%,
+    50% {
+        -webkit-transform: rotate(0) scale(1) skew(1deg);
+    }
+
+    10%,
+    30% {
+        -webkit-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+
+    20%,
+    40% {
+        -webkit-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+}
+
+@-o-keyframes shake-anim {
+    0%,
+    100%,
+    50% {
+        -o-transform: rotate(0) scale(1) skew(1deg);
+    }
+
+    10%,
+    30% {
+        -o-transform: rotate(-25deg) scale(1) skew(1deg);
+    }
+
+    20%,
+    40% {
+        -o-transform: rotate(25deg) scale(1) skew(1deg);
+    }
+}

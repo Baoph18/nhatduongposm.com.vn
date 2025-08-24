@@ -1,0 +1,301 @@
+/* arguments inittial */
+$color_body: #3c3c3c;
+$color_link: #3c3c3c;
+$color_heading: #3c3c3c;
+
+$color_bg: #c4c6c6;
+$color_bg_secondary: #000000;
+
+$orange1: #e89367;
+$brown1: #ba8f6a;
+$brown2: #f0dece;
+$brown3: #605449;
+$brown4: #e6c6ad;
+$brown5: #fff0e3;
+$brown6: #cdac90;
+$brown7: #fff1e5;
+$brown8: #ffefe2;
+$brown9: #e3ccb8;
+$brown10: #d9ad8a;
+$brown11: #e8d5c1;
+$gray1: #3c3c3c;
+
+$font_feature_settings_palt: false;
+$font_smooth: true;
+$img_url: "/wp/wp-content/themes/wp-templ/assets/";
+
+$browser_prefix: ("-webkit-", "-moz-", "-ms-", "-o-", "");
+@mixin add_prefix($key, $value) {
+  @each $prefix in $browser_prefix {
+    #{$prefix}#{$key}: $value;
+  }
+  #{$key}: $value; // Add the unprefixed version
+}
+
+$hiraGothic: "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro",
+  "ヒラギノ角ゴ Pro W3", "ヒラギノ角ゴ W3", "Noto Sans JP", "メイリオ", "Osaka",
+  "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+$hiraMincho: "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "Noto Serif JP",
+  "HGS明朝E", "ＭＳ Ｐ明朝", serif;
+$yugothic: "游ゴシック体", "游ゴシック", "YuGothic", "Yu Gothic", "Noto Sans JP",
+  "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo,
+  "MS Pゴシック", "MS PGothic", sans-serif;
+$yumincho: "游明朝体", "游明朝", "YuMincho", "Yu Mincho", "Noto Serif JP",
+  "ヒラギノ明朝 Pro", "Hiragino Mincho Pro", "MS P明朝", "MS PMincho", serif;
+$hiragino: "Hiragino Mincho Pro", "Noto Serif JP", serif;
+$CormorantInfant: "Cormorant Infant", serif;
+$Arial: Arial, sans-serif;
+/* font style */
+
+@mixin ffN {
+  font-family: $hiraGothic;
+}
+@mixin ffM {
+  font-family: $hiraMincho;
+}
+@mixin ffYG {
+  font-family: $yugothic;
+}
+@mixin ffYM {
+  font-family: $yumincho;
+}
+@mixin ffHR {
+  font-family: $hiragino;
+}
+@mixin ffCI {
+  font-family: $CormorantInfant;
+}
+@mixin ffAr {
+  font-family: $Arial;
+}
+@mixin font-smooth() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin off-font-smooth() {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+@mixin palt() {
+  @include add_prefix(font-feature-settings, "palt");
+}
+
+/* site style */
+@mixin text-hide {
+  overflow: hidden;
+  text-indent: -9999px;
+}
+
+/* [ background-image ]
+-------------------------------------------------*/
+@mixin bgimg($url, $rep: repeat, $pos: left top, $color: none, $size: auto) {
+  background-image: url($url);
+  background-repeat: $rep;
+  background-position: $pos;
+  background-color: $color;
+  background-size: $size;
+}
+
+/* [ writing-mode ]
+-------------------------------------------------*/
+@mixin writing-mode($orientation: "h", $direction: "rl") {
+  @if $orientation == "v" {
+    // Vertical with direction, rl by default
+    @include add_prefix(writing-mode, vertical- + $direction);
+  } @else {
+    // Default...
+    @include add_prefix(writing-mode, horizontal-tb);
+  }
+}
+
+/* [ easy breakpoint ]
+-------------------------------------------------*/
+@mixin PC {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+@mixin PC-1366 {
+  @media (min-width: 1367px) {
+    @content;
+  }
+}
+@mixin SP {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+//aspect-ratio fixed box
+//==================================================
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: " ";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// CLEARFIX
+@mixin clearfix() {
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+//==================================================
+// Triangle helper mixin
+// @param {Direction} $direction - Triangle direction, either `top`, `right`, `bottom` or `left`
+// @param {Color} $color [currentcolor] - Triangle color
+// @param {Length} $size [1em] - Triangle size
+// Call | .css::before { @include triangle(bottom, #000, 5px); }
+//==================================================
+@mixin triangle($direction, $color: currentcolor, $size: 1em, $distance: 5px) {
+  @if not index(top right bottom left, $direction) {
+    @error "Direction must be either `top`, `right`, `bottom` or `left`.";
+  }
+
+  width: 0;
+  height: 0;
+  content: "";
+  z-index: 2;
+  margin: $distance;
+  border-#{opposite-position($direction)}: ($size * 1.5) solid $color;
+
+  $perpendicular-borders: $size solid transparent;
+
+  @if $direction == top or $direction == bottom {
+    border-left: $perpendicular-borders;
+    border-right: $perpendicular-borders;
+  } @else if $direction == right or $direction == left {
+    border-bottom: $perpendicular-borders;
+    border-top: $perpendicular-borders;
+  }
+}
+
+// SINGLE LINE ELLIPSIS
+//==================================================
+@mixin singleLineEllipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// MULTIPLE LINES ELLIPSIS
+//==================================================
+@mixin multiLineEllipsis($lineCount: 1) {
+  overflow: hidden;
+  width: 100%;
+  -webkit-line-clamp: $lineCount;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+// FLEXBOX
+//==================================================
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex2($value: 1) {
+  @include add_prefix(flex, $value);
+}
+
+@mixin flex-wrap($wrap: wrap) {
+  @include add_prefix(flex-wrap, $wrap);
+}
+
+@mixin align-items($align: center) {
+  @include add_prefix(align-items, $align);
+}
+
+@mixin align-content($align: space-between) {
+  @include add_prefix(align-content, $align);
+}
+
+@mixin justify-content($direction: center) {
+  @include add_prefix(justify-content, $direction);
+}
+
+@mixin flex-direction($direction: column) {
+  @include add_prefix(flex-direction, $direction);
+}
+
+// ANIMATION KEY-FRAME
+//==================================================
+@mixin keyframes($content) {
+  @-webkit-keyframes #{$content} {
+    @content;
+  }
+  @keyframes #{$content} {
+    @content;
+  }
+}
+
+// FONT
+//==================================================
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+@mixin font($size: "", $line: "", $letter: "", $weight: "") {
+  @if $size != "" {
+    $size-no-unit: strip-unit($size);
+    font-size: $size-no-unit + px;
+    font-size: ($size-no-unit) / 10 + rem;
+  }
+  @if $line != "" {
+    $line-no-unit: strip-unit($line);
+    @if $line-no-unit < 6 {
+      line-height: $line-no-unit + em;
+    } @else {
+      @if $size != "" {
+        $size-no-unit: strip-unit($size);
+        line-height: ($line-no-unit / $size-no-unit) + em;
+      } @else {
+        line-height: ($line-no-unit) / 10 + rem;
+      }
+    }
+  }
+  @if $letter != "" {
+    $letter-no-unit: strip-unit($letter);
+    @if $letter-no-unit > 9 or $letter-no-unit < 0 {
+      letter-spacing: ($letter-no-unit / 1000) + em;
+    } @else {
+      letter-spacing: $letter-no-unit + em;
+    }
+  }
+  @if $weight != "" {
+    font-weight: $weight;
+  }
+}

@@ -1,0 +1,156 @@
+.content-foot1{
+    margin-bottom: 20px;
+}
+
+.content-foot2{
+    margin-bottom: 20px;
+}
+
+.title-footer {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+   
+}
+.info-footer--v2 {
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-box {
+    display: flex;
+  
+    gap: 10px;
+  
+}
+.info-box2 {
+    display: flex;
+
+    gap: 10px;
+    margin-right: 20px;
+  
+}
+
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #e53935; /* màu đỏ */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.info-text {
+    line-height: 1.3;
+}
+
+.info-text div {
+    font-size: 14px;
+}
+
+.info-text span {
+    display: block;
+    font-weight: bold;
+    color: #e53935;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.footer-note {
+    color: white;
+    font-size: 12px;
+}
+
+.col-inner{
+    font-size: 18px;
+}
+
+.sp-color {
+    color: white
+}
+
+.border-footer {
+    border-color: gray;
+}
+
+.CS-footer {
+    font-size: 16px;
+    width: 20px;
+}
+
+.floating-buttons {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+    align-items: center; /* Căn giữa icon */
+}
+
+/* Zalo */
+.zalo-btn {
+    width: 56px;
+    height: 56px;
+    background: #0068ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    margin-right: 117px;
+    margin-bottom: 51px;
+}
+.zalo-btn img {
+    width: 34px;
+    height: 34px;
+}
+
+/* Hotline */
+.hotline-btn {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #ff4b4b, #e60000);
+    border-radius: 36px;
+    padding: 6px 14px;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+.hotline-btn .icon {
+    width: 44px;
+    height: 44px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+.hotline-btn .text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    line-height: 1.2;
+}
+.hotline-btn .label {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+}
+.hotline-btn .number {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffd54f;
+}
+
+.hotline-btn .icon i {
+    color: red; /* Đổi sang đỏ */
+    
+}

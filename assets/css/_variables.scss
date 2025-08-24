@@ -1,0 +1,106 @@
+// Variables
+$fontFamily: 'Nunito', 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$fontSize: 16px;
+
+// Screen
+$xsWidth: 425px;
+$smWidth: 575px;
+$mdWidth: 767px;
+$lgWidth: 991px;
+$xlWidth: 1199px;
+$xxlWidth: 1365px;
+
+// Function
+@function mathScreen($widthType, $width) {
+    @if $widthType == "min" {
+        @return $width + 1;
+    } @else {
+        @return $width;
+    }
+}
+
+// Mixin
+@mixin flex($alignItems: "", $justifyContent: "", $direction: "", $wrap: false) {
+    display: flex;
+
+    @if $wrap {
+        flex-wrap: wrap;
+    }
+
+    @if $direction != "" {
+        flex-direction: $direction;
+    }
+
+    @if $alignItems != "" {
+        align-items: $alignItems;
+    }
+
+    @if $justifyContent != "" {
+        justify-content: $justifyContent;
+    }
+}
+
+@mixin background($image, $size: "", $repeat: "", $position: "") {
+    background-image: $image;
+
+    @if $size != "" {
+        background-size: $size;
+    }
+
+    @if $repeat != "" {
+        background-repeat: $repeat;
+    }
+
+    @if $position != "" {
+        background-position: $position;
+    }
+}
+
+@mixin media($screen, $widthType: "max") {
+    @if $screen == XS {
+        @media only screen and (#{$widthType}-width: mathScreen($widthType, $xsWidth)) {
+            @content;
+        }
+    } @else if $screen == XS-BTW {
+        @media only screen and (min-width: mathScreen("min", $xsWidth)) and (max-width: $smWidth) {
+            @content;
+        }
+    } @else if $screen == SM {
+        @media only screen and (#{$widthType}-width: mathScreen($widthType, $smWidth)) {
+            @content;
+        }
+    } @else if $screen == SM-BTW {
+        @media only screen and (min-width: mathScreen("min", $smWidth)) and (max-width: $mdWidth) {
+            @content;
+        }
+    } @else if $screen == MD {
+        @media only screen and (#{$widthType}-width: mathScreen($widthType, $mdWidth)) {
+            @content;
+        }
+    } @else if $screen == MD-BTW {
+        @media only screen and (min-width: mathScreen("min", $mdWidth)) and (max-width: $lgWidth) {
+            @content;
+        }
+    } @else if $screen == LG {
+        @media only screen and (#{$widthType}-width: mathScreen($widthType, $lgWidth)) {
+            @content;
+        }
+    } @else if $screen == LG-BTW {
+        @media only screen and (min-width: mathScreen("min", $lgWidth)) and (max-width: $xlWidth) {
+            @content;
+        }
+    } @else if $screen == XL {
+        @media only screen and (#{$widthType}-width: mathScreen($widthType, $xlWidth)) {
+            @content;
+        }
+    } @else if $screen == XL-BTW {
+        @media only screen and (min-width: mathScreen("min", $xlWidth)) and (max-width: $xxlWidth) {
+            @content;
+        }
+    } @else if $screen == XXL {
+        @media only screen and (#{$widthType}-width: mathScreen($widthType, $xxlWidth)) {
+            @content;
+        }
+    }
+}
